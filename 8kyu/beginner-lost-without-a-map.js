@@ -1,11 +1,15 @@
-// // ❓Description:
-// Given an array of integers, return a new array with each value doubled.
+// // ❓
+// // Description:
+// Terminal game move function
+// In this game, the hero moves from left to right. The player rolls the die and moves the number of spaces indicated by the die two times.
 
-// // ❗️  
-// [1, 2, 3] --> [2, 4, 6]
+// Create a function for the terminal game that takes the current position of the hero and the roll (1-6) and return the new position.
 
-//  ✅
-function maps(x){
-    return x.map(element => element * 2);
+// // // ❗️  
+// move(3, 6) should equal 15
+
+// // ✅
+
+function move (position, roll) {
+    return position + roll * 2;
 }
-
