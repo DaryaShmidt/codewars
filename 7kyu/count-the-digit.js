@@ -23,21 +23,19 @@
 function nbDig(n, d) {
     const array = [0];
     for (let i = 1; i <= n; i++ ){
-        let num = i;
+        let num = i ** 2;
         array.push(num);
     }
 
-    array.forEach((elem, index) => {
-        array[index] = elem ** 2;
-    });
     let str = array.join('');
     let count = 0;
-    for (let i = 0; i < str.length; i++){
-        if(str[i] === d.toString()) {
-            count += 1;
+    for (let value of str) {
+        if (value === d.toString()){
+            count+=1;
         }
-    } 
+    }
     return count;
-    
 }
+
+
 
