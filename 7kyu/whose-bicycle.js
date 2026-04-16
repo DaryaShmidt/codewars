@@ -21,54 +21,44 @@ ageTable = {
 
 
 function whoseBicycle(diary1, diary2, diary3) {
-  const diaries = [diary1, diary2, diary3];
-  const sumsOfMarks = [];
-  for (let diary of diaries) {
-    const sum = Object.values(diary).reduce((accum, curr) => accum += curr, 0);
-    sumsOfMarks.push(sum);
+  const diaries = {
+    'firstSonAge': diary1,
+    'secondSonAge': diary2,
+    'thirdSonAge': diary3
+  };
+
+  for (let diary in diaries){
+    diaries[diary] = Object.values(diaries[diary]).reduce((sum, curr) => sum + curr);
   }
 
-  let maxSum = 0;
-  let index = [];
-  for (let i = 0; i <= sumsOfMarks.length; i++){
-    if (sumsOfMarks[i] >= maxSum) {
-      maxSum = sumsOfMarks[i]
-      index.push(i);
-    } 
-  }
-
-  const agesOfSuns = Object.values(ageTable);
-  if (index.length > 1) {
-    let maxAge = 0;
-    let sun;
-    for (let value of index){
-      if(agesOfSuns[value] > maxAge) {
-        maxAge = agesOfSuns[value];
-        sun = value;
+  let max = 0;
+  let son = '';
+  for(let diary in diaries) {
+    if (diaries[diary] > max){
+      max = diaries[diary];
+      son = diary;
+    }else if(diaries[diary] === max){
+      if (ageTable[son] > ageTable[diary]){
+        son = diary;
       }
-
     }
-
   }
+  const indexSon = son.indexOf('Son');
 
-
-  return agesOfSuns;
-
-
-  
-
+  return `I need to buy a bicycle for my ${son.slice(0, indexSon)} son.`;
 }
 //  let sum1 = Object.values(diary1).reduce((accum, curr) => accum += curr, 0);
 //   let sum2 = Object.values(diary2).reduce((accum, curr) => accum += curr, 0);
 //   let sum3 = Object.values(diary3).reduce((accum, curr) => accum += curr, 0);
 
 
-console.log(whoseBicycle( {
+console.log(whoseBicycle( 
+ {
         'algebra': 6,
         'history': 7,
         'physics': 8,
         'geography': 9,
-        'chemistry': 10
+        'chemistry': 5
       },
       {
         'algebra': 6,
@@ -79,8 +69,9 @@ console.log(whoseBicycle( {
       },
       {
         'algebra': 6,
-        'history': 5,
-        'physics': 5,
+        'history': 7,
+        'physics': 8,
         'geography': 9,
         'chemistry': 10
-      }));
+      })
+    )
