@@ -1,0 +1,40 @@
+// // ❓Description:
+// The input will be an array of dictionaries.
+
+// Return the values as a string-seperated sentence in the order of their keys' integer equivalent (increasing order).
+
+// The keys are not reoccurring and their range is -999 < key < 999. The dictionaries' keys & values will always be strings and will always not be empty.
+
+// ❗️  
+// Input:
+// List = [
+//         {'4': 'dog' }, {'2': 'took'}, {'3': 'his'},
+//         {'-2': 'Vatsan'}, {'5': 'for'}, {'6': 'a'}, {'12': 'spin'}
+//        ]
+
+// Output:
+// 'Vatsan took his dog for a spin'
+
+//  ✅
+
+function sentence(arrayOfObjects) {
+    let arrOfKeys = [];
+    let totalObj = {};
+
+    arrayOfObjects.forEach((obj) => {
+        arrOfKeys = arrOfKeys.concat(Object.keys(obj));
+        totalObj = {...totalObj, ...obj};
+
+    })
+
+    arrOfKeys = arrOfKeys.sort((a,b) => a - b);
+    let str = '';
+    
+    for (i = 0; i < arrOfKeys.length; i++){
+        str += totalObj[arrOfKeys[i]] + ' ';
+    }
+
+    return str.trim();
+}
+
+console.log(sentence([{'4': 'dog' }, {'2': 'took'}, {'3': 'his'}, {'-2': 'Vatsan'}, {'5': 'for'}, {'6': 'a'}, {'12': 'spin'}]));
